@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "M. Ali Raza",
+    "location": "Sialkot",
+    "system": "12kW Hybrid Solar System",
+    "text": "AS Solar installed a 12kW hybrid solar system at my home near Kashmir Road. Their structural engineering, clean wiring, DISCO net metering, and after-sale support are outstanding. My electricity bill is down by 85%!",
+    "rating": 5,
+    "createdAt": "2026-08-20T10:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "Sheikh Usman",
+    "location": "Sialkot Business Bay",
+    "system": "25kW Commercial Net Metering",
+    "text": "Professional engineering team. They delivered elevated structure mounting and complete power distribution on schedule. Excellent after-sales service!",
+    "rating": 5,
+    "createdAt": "2026-08-21T14:30:00.000Z"
+  },
+  {
+    "id": "3",
+    "name": "Chaudhry Hamza",
+    "location": "Gujranwala, Punjab",
+    "system": "10kW On-Grid System",
+    "text": "Best pricing and genuine Tier-1 components. The online inverter settings support and remote mobile app configuration were handled smoothly.",
+    "rating": 5,
+    "createdAt": "2026-08-22T09:15:00.000Z"
+  }
+]
