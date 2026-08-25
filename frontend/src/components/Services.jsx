@@ -20,21 +20,16 @@ export default function Services() {
     },
     {
       num: '04',
-      title: 'Customized & Elevated Structures',
-      desc: 'Elevated L2/L3 customized mounting structures engineered to withstand heavy winds and optimize roof space.',
-    },
-    {
-      num: '05',
       title: 'Battery Management Systems (BMS)',
       desc: 'BMS communication setup, lithium-ion battery integration, and hybrid inverter configuration for smart power backup.',
     },
     {
-      num: '06',
+      num: '05',
       title: 'Turn-Key Power Solutions',
       desc: 'Reliable uninterrupted power solutions tailored for factories, commercial outlets, and luxury residences.',
     },
     {
-      num: '07',
+      num: '06',
       title: 'Mechanical Services, Earthing & Boring',
       desc: 'Precision mechanical engineering, dedicated copper earthing pits, and deep boring solutions for complete system grounding.',
     },
@@ -43,7 +38,7 @@ export default function Services() {
   return (
     <section id="services" className="services-section section-padding bg-alt">
       <div className="container">
-        
+
         {/* Section Header */}
         <div className="section-header text-center">
           <span className="section-small-subheading">WHAT WE DO</span>
@@ -58,8 +53,8 @@ export default function Services() {
         {/* 7 Services Grid */}
         <div className="services-grid-container">
           {servicesList.map((service, idx) => (
-            <div 
-              key={service.num} 
+            <div
+              key={service.num}
               className="service-card glass-card"
               style={{ animationDelay: `${idx * 0.1}s` }}
             >

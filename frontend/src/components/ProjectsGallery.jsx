@@ -8,7 +8,7 @@ export default function ProjectsGallery() {
       title: '15kW Residential Solar System',
       category: 'Residential',
       location: 'Kashmir Road, Sialkot',
-      img: '/images/hero-solar.png',
+      img: '/images/about-solar.png',
       desc: 'High-yield residential installation achieving zero electricity bill with DISCO net metering.'
     },
     {
@@ -102,7 +102,7 @@ export default function ProjectsGallery() {
             </div>
 
             <div className="slide-content-box">
-              <span className="slide-location">📍 {currentProj.location}</span>
+              <span className="slide-location">{currentProj.location}</span>
               <h3 className="slide-title">{currentProj.title}</h3>
               <p className="slide-desc">{currentProj.desc}</p>
               

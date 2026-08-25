@@ -44,7 +44,7 @@ export default function Home() {
       <ServiceArea />
 
       {/* 10. Offers / Free Consultation CTA */}
-      <OffersCTA />
+      {/* <OffersCTA /> */}
 
       {/* 11. Testimonials / Reviews Slider */}
       <Testimonials />

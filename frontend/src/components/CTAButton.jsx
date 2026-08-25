@@ -2,29 +2,36 @@ import React from 'react';
 
 /**
  * Reusable CTA Button component
- * Redirects directly to WhatsApp chat for AS Solar (0314 4632662 / +92 314 4632662)
+ * Clicking "Get Free Consultation" opens the Consultation Appointment Booking Popup Modal
  */
 export default function CTAButton({ 
   text = "Get Free Consultation →", 
-  phoneNumber = "923144632662", 
-  message = "Hello AS Solar, I would like to get a free solar consultation.", 
+  message = "", 
   variant = "primary", 
   className = "",
-  style = {} 
+  style = {},
+  onClick
 }) {
-  const handleWhatsAppRedirect = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    // Open Consultation Appointment Booking Popup Modal
+    const event = new CustomEvent('open-consultation-modal', {
+      detail: { message }
+    });
+    window.dispatchEvent(event);
   };
 
   return (
     <button 
-      onClick={handleWhatsAppRedirect} 
+      onClick={handleClick} 
       className={`cta-btn cta-btn-${variant} ${className}`}
       style={style}
-      aria-label="Contact AS Solar on WhatsApp"
+      aria-label="Get Free Consultation"
     >
       <span>{text}</span>
     </button>
