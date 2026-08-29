@@ -730,6 +730,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: rgba(0, 0, 0, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -738,6 +739,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   animation: fadeInModal 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -755,11 +758,32 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.75rem 1.85rem;
   position: relative;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
-  max-height: 92vh;
-  overflow: hidden;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
+  margin: auto;
   animation: slideUpModal 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for modal card */
+.consultation-modal-card.compact-one-view::-webkit-scrollbar {
+  width: 5px;
+}
+
+.consultation-modal-card.compact-one-view::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.consultation-modal-card.compact-one-view::-webkit-scrollbar-thumb {
+  background: rgba(251, 119, 7, 0.35);
+  border-radius: 4px;
+}
+
+.consultation-modal-card.compact-one-view::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
 }
 
 [data-theme="light"] .consultation-modal-card.compact-one-view {
@@ -936,9 +960,56 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 576px) {
+  .modal-backdrop {
+    padding: 1.25rem 0.5rem;
+    align-items: center;
+  }
+
+  .consultation-modal-card.compact-one-view {
+    width: 95%;
+    max-height: 86vh;
+    max-height: 86dvh;
+    padding: 1.35rem 1.15rem;
+    border-radius: 16px;
+    margin: auto;
+  }
+
+  .modal-close-btn {
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .modal-form.compact {
+    gap: 0.65rem;
+  }
+
   .modal-form.compact .form-row {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.65rem;
+  }
+
+  .modal-form.compact .form-group {
+    gap: 0.2rem;
+  }
+
+  .modal-form.compact input {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-submit-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.88rem;
   }
 }
 

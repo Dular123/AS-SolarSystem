@@ -145,6 +145,36 @@ app.post('/api/reviews', (req, res) => {
   }
 });
 
+// DELETE /api/reviews/:id - Delete a Review by ID (Admin)
+app.delete('/api/reviews/:id', (req, res) => {
+  try {
+    const { id } = req.params;
+    const allReviews = getStoredReviews();
+    const filtered = allReviews.filter(r => r.id !== id);
+
+    if (allReviews.length === filtered.length) {
+      return res.status(404).json({
+        success: false,
+        message: 'Review not found.'
+      });
+    }
+
+    saveReviewsToFile(filtered);
+    console.log(`🗑️ Review with ID ${id} deleted.`);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Review deleted successfully.'
+    });
+  } catch (err) {
+    console.error('Error deleting review:', err);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to delete review.'
+    });
+  }
+});
+
 // POST /api/inquiry - Send An Inquiry Endpoint
 app.post('/api/inquiry', async (req, res) => {
   try {
