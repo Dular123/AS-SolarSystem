@@ -49,9 +49,9 @@ export default function Navbar() {
     <header className={`navbar-header ${isScrolled ? 'scrolled' : 'transparent'}`}>
       <div className="navbar-container">
         
-        {/* LEFT: Logo Image Only (No text label) */}
-        <a href="#home" className="navbar-logo-link" onClick={() => handleNavClick('home')} title="AS Solar">
-          <img src="/images/logo.png" alt="AS Solar" className="navbar-logo-img" />
+        {/* LEFT: Logo Image Only */}
+        <a href="#home" className="navbar-logo-link" onClick={() => handleNavClick('home')} title="AS Solar System Sialkot">
+          <img src="/images/logo.png" alt="AS Solar System Sialkot Logo" className="navbar-logo-img" width="160" height="48" />
         </a>
 
         {/* CENTER: Clean Reduced Navigation Links */}

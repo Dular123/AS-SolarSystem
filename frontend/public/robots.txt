@@ -1,0 +1,7 @@
+# AS Solar System - Search Engine Crawler Rules
+User-agent: *
+Allow: /
+
+# Host & Sitemap location
+Host: https://assolar.pk
+Sitemap: https://assolar.pk/sitemap.xml

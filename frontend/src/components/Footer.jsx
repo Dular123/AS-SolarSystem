@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand Info & Official Logo Only */}
           <div className="footer-brand-col">
             <div className="footer-logo">
-              <img src="/images/logo.png" alt="AS Solar" className="footer-logo-img" />
+              <img src="/images/logo.png" alt="AS Solar System Sialkot" className="footer-logo-img" loading="lazy" decoding="async" width="150" height="45" />
             </div>
             <p className="footer-brand-desc">
               Clean Energy. Reliable Power. Professional Solutions.

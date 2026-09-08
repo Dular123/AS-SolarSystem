@@ -52,7 +52,7 @@ export default function ConsultationModal() {
     try {
       const fullMessage = `Preferred Slot: ${formData.preferredSlot || 'Flexible'} | Message: ${formData.message || 'Free solar consultation request'}`;
       
-      const response = await fetch('/api/inquiry', {
+      const response = await fetch('https://as-solarsystem-backend.onrender.com/api/inquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -73,7 +73,7 @@ export default function ConsultationModal() {
       }
     } catch (err) {
       console.error('Error submitting consultation request:', err);
-      setSubmitted(true);
+      setErrorMessage('Unable to submit your request. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

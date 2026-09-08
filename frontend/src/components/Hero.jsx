@@ -33,21 +33,29 @@ export default function Hero() {
             key={imgUrl}
             className={`hero-bg-slide ${idx === currentImgIndex ? 'active' : ''}`}
             style={{ backgroundImage: `url(${imgUrl})` }}
-          />
+          >
+            <img 
+              src={imgUrl} 
+              alt={`AS Solar System Sialkot Banner ${idx + 1}`} 
+              aria-hidden="true" 
+              style={{ display: 'none' }}
+              fetchpriority={idx === 0 ? "high" : "low"}
+            />
+          </div>
         ))}
         <div className="hero-bg-overlay"></div>
       </div>
 
       <div className="hero-centered-content container text-center">
 
-        {/* Massive Centered Headline */}
+        {/* Massive Centered Headline with Targeted Keywords */}
         <h1 className="hero-center-title">
-          Empowering Homes & Businesses With <span className="highlight-text">Clean Solar Energy</span>
+          Premier Solar System Installation in <span className="highlight-text">Sialkot & Punjab</span>
         </h1>
 
         {/* Centered Subtitle */}
         <p className="hero-center-desc">
-          Custom solar system design, high-efficiency panel installations, elevated structures, and lifetime maintenance support across Sialkot & Punjab.
+          Custom solar system design, high-efficiency panel installations, net metering, elevated structures, and lifetime maintenance support across Sialkot & Punjab.
         </p>
 
         {/* Dual CTAs */}

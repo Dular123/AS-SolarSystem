@@ -15,7 +15,7 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="homepage-wrapper">
+    <main className="homepage-wrapper">
       {/* 01. Navbar */}
       <Navbar />
 
@@ -54,6 +54,6 @@ export default function Home() {
 
       {/* 13. Footer */}
       <Footer />
-    </div>
+    </main>
   );
 }

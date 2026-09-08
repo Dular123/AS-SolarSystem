@@ -23,7 +23,7 @@ export default function Contact() {
     setErrorMsg('');
 
     try {
-      const response = await fetch('/api/inquiry', {
+      const response = await fetch('https://as-solarsystem-backend.onrender.com/api/inquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

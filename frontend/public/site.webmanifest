@@ -1,0 +1,21 @@
+{
+  "name": "AS Solar System",
+  "short_name": "AS Solar",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#FB7707",
+  "background_color": "#0B1120",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

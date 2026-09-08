@@ -19,7 +19,7 @@ export default function Testimonials() {
   // Fetch top 3-5 recent reviews from API
   const fetchReviews = async () => {
     try {
-      const res = await fetch('/api/reviews');
+      const res = await fetch('https://as-solarsystem-backend.onrender.com/api/reviews');
       const data = await res.json();
       if (res.ok && data.success) {
         setReviews(data.data);
@@ -45,7 +45,7 @@ export default function Testimonials() {
     setSuccessMsg('');
 
     try {
-      const res = await fetch('/api/reviews', {
+      const res = await fetch('https://as-solarsystem-backend.onrender.com/api/reviews', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newReview)

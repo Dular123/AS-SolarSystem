@@ -95,8 +95,10 @@ export default function ProjectsGallery() {
             <div className="slide-image-box">
               <img 
                 src={currentProj.img} 
-                alt={currentProj.title} 
+                alt={`${currentProj.title} - AS Solar System Installation in ${currentProj.location}`} 
                 className="gallery-slide-img" 
+                loading="lazy"
+                decoding="async"
               />
               <span className="slide-category-badge">{currentProj.category}</span>
             </div>

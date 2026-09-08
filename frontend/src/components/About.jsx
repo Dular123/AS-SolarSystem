@@ -11,8 +11,12 @@ export default function About() {
             <div className="layered-image-container">
               <img 
                 src="/images/about-solar.png" 
-                alt="AS Solar Turnkey Installation" 
+                alt="AS Solar System Turnkey Solar Panel Installation in Sialkot Punjab" 
                 className="about-main-img" 
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="450"
               />
               <div className="floating-badge-years">
                 <span className="badge-big-num">10+</span>
