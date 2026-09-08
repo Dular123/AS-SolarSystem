@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const nodemailer = require('nodemailer');
+const { BrevoClient } = require('@getbrevo/brevo');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
@@ -43,20 +43,11 @@ const saveReviewsToFile = (reviews) => {
 };
 
 // Helper: Setup Nodemailer Transporter
-const createTransporter = () => {
-  if (process.env.SMTP_USER && process.env.SMTP_PASS && process.env.SMTP_PASS !== 'your_app_password_here') {
-    return nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    });
-  }
-  return null;
-};
+const brevo = new BrevoClient({
+  apiKey: process.env.BREVO_API_KEY,
+  timeoutInSeconds: 10,
+  maxRetries: 1
+});
 
 // Base Routes
 app.get('/', (req, res) => {
@@ -201,40 +192,81 @@ app.post('/api/inquiry', async (req, res) => {
     inquiriesLog.push(inquiryRecord);
     console.log('📩 New Inquiry Received for AS Solar:', inquiryRecord);
 
-    const transporter = createTransporter();
     let emailSent = false;
 
-    if (transporter) {
-      const mailOptions = {
-        from: `"AS Solar Website Inquiry" <${process.env.SMTP_USER}>`,
-        to: process.env.COMPANY_EMAIL || 'as.solargroup@gmail.com',
+    try {
+      const emailResult = await brevo.transactionalEmails.sendTransacEmail({
+        sender: {
+          name: 'AS Solar Website',
+          email: process.env.BREVO_SENDER_EMAIL
+        },
+        to: [
+          {
+            email: process.env.COMPANY_EMAIL || 'as.solargroup@gmail.com'
+          }
+        ],
         subject: `New Client Inquiry from ${name} - AS Solar`,
-        html: `
+        htmlContent: `
           <div style="font-family: Arial, sans-serif; padding: 20px; color: #0f172a; max-width: 600px; border: 1px solid #e2e8f0; border-radius: 8px;">
-            <h2 style="color: #d97706; margin-bottom: 5px;">AS Solar — New Client Inquiry</h2>
-            <p style="color: #64748b; font-size: 14px;">Submitted via AS Solar Website</p>
+            <h2 style="color: #d97706; margin-bottom: 5px;">
+              AS Solar — New Client Inquiry
+            </h2>
+
+            <p style="color: #64748b; font-size: 14px;">
+              Submitted via AS Solar Website
+            </p>
+
             <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 15px 0;" />
+
             <p><strong>Client Name:</strong> ${name}</p>
-            <p><strong>Phone Number:</strong> <a href="tel:${phone}">${phone}</a></p>
-            <p><strong>Email Address:</strong> ${email || 'Not Provided'}</p>
-            <p><strong>Required Service:</strong> ${service || 'Solar Installation'}</p>
+
+            <p>
+              <strong>Phone Number:</strong>
+              <a href="tel:${phone}">${phone}</a>
+            </p>
+
+            <p>
+              <strong>Email Address:</strong>
+              ${email || 'Not Provided'}
+            </p>
+
+            <p>
+              <strong>Required Service:</strong>
+              ${service || 'Solar Installation'}
+            </p>
+
             <p><strong>Message Details:</strong></p>
+
             <div style="background-color: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
               ${message.replace(/\n/g, '<br/>')}
             </div>
-            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
-            <p style="font-size: 12px; color: #94a3b8;">AS Solar &copy; 2026 • Business Bay Kashmir Road Sialkot</p>
-          </div>
-        `
-      };
 
-      try {
-        await transporter.sendMail(mailOptions);
-        emailSent = true;
-        console.log('✅ Email successfully dispatched to as.solargroup@gmail.com');
-      } catch (mailErr) {
-        console.error('⚠️ Could not send SMTP email:', mailErr.message);
-      }
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;" />
+
+            <p style="font-size: 12px; color: #94a3b8;">
+              AS Solar &copy; 2026 • Business Bay Kashmir Road Sialkot
+            </p>
+          </div>
+        `,
+        ...(email ? {
+          replyTo: {
+            email: email
+          }
+        } : {})
+      });
+
+      emailSent = true;
+
+      console.log(
+        '✅ Email successfully sent via Brevo:',
+        emailResult.messageId
+      );
+
+    } catch (mailErr) {
+      console.error(
+        '⚠️ Could not send Brevo email:',
+        mailErr.message
+      );
     }
 
     return res.status(200).json({
