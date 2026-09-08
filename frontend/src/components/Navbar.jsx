@@ -51,7 +51,8 @@ export default function Navbar() {
         
         {/* LEFT: Logo Image Only */}
         <a href="#home" className="navbar-logo-link" onClick={() => handleNavClick('home')} title="AS Solar System Sialkot">
-          <img src="/images/logo.png" alt="AS Solar System Sialkot Logo" className="navbar-logo-img" width="160" height="48" />
+          <img src="/images/white_logo.png" alt="AS Solar System Sialkot Logo" className="navbar-logo-img logo-dark-theme" width="160" height="48" />
+          <img src="/images/black_logo.png" alt="AS Solar System Sialkot Logo" className="navbar-logo-img logo-light-theme" width="160" height="48" />
         </a>
 
         {/* CENTER: Clean Reduced Navigation Links */}

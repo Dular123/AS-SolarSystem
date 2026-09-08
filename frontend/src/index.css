@@ -55,6 +55,23 @@
   --shadow-color: rgba(15, 23, 42, 0.06);
 }
 
+/* LOGO THEME SWITCHING (White logo in Dark Mode, Black logo in Light Mode) */
+:root .logo-dark-theme,
+[data-theme="dark"] .logo-dark-theme {
+  display: inline-block !important;
+}
+:root .logo-light-theme,
+[data-theme="dark"] .logo-light-theme {
+  display: none !important;
+}
+
+[data-theme="light"] .logo-dark-theme {
+  display: none !important;
+}
+[data-theme="light"] .logo-light-theme {
+  display: inline-block !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
