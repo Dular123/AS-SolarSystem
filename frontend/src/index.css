@@ -236,8 +236,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .whatsapp-icon {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
+  display: block;
 }
 
 .floating-whatsapp-tooltip {
